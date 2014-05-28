@@ -22,14 +22,14 @@ public class LinesOfCode {
 		int comment1, comment2, comment3;
 		boolean multiLineComment = false;
 
-		// �berpr�fung, ob der Dateiname existiert
+		// Ueberpruefung, ob der Dateiname existiert
 		if (filename == null)
 			return -1;
-		// �berpr�fung, ob Datei existiert
+		// Ueberpruefung, ob Datei existiert
 		if (!new File(filename).exists()){
 			return -2;
 		}
-		// �berpr�fung, ob die Datei lesbar ist
+		// Ueberpruefung, ob die Datei lesbar ist
 		if (!new File(filename).canRead()){
 			return -3;
 		}
@@ -65,7 +65,7 @@ public class LinesOfCode {
 		return lineCounter;
 	}
 	
-	//Wenn vorhanden, l�sche die Leerzeichen und Tabs	
+	//Wenn vorhanden, loesche die Leerzeichen und Tabs
 	static String deleteSpaces(String original) {
 		int counter = 0;
 		String rest = "";
@@ -84,31 +84,31 @@ public class LinesOfCode {
 	}
 
 	static int strScan( String original, String needle ){
-		int z�hlerOriginal = 0;
-		int z�hlerNeedle = 0;
+		int zaehlerOriginal = 0;
+		int zaehlerNeedle = 0;
 		int stelleImString = 0;
-		int l�ngeOriginal = original.length();
-		int l�ngeNeedle = needle.length();
+		int laengeOriginal = original.length();
+		int laengeNeedle = needle.length();
 		boolean needleReset = false;
 
 
-		while(z�hlerOriginal < l�ngeOriginal){
-			while (z�hlerOriginal < l�ngeOriginal && original.charAt(z�hlerOriginal) == needle.charAt(z�hlerNeedle)){
-				//Merken der ersten Stelle der gefundenen Zeichenkette zur R�ckgabe.
-				if (z�hlerNeedle == 0){
-					stelleImString = z�hlerOriginal;
+		while(zaehlerOriginal < laengeOriginal){
+			while (zaehlerOriginal < laengeOriginal && original.charAt(zaehlerOriginal) == needle.charAt(zaehlerNeedle)){
+				//Merken der ersten Stelle der gefundenen Zeichenkette zur Rueckgabe.
+				if (zaehlerNeedle == 0){
+					stelleImString = zaehlerOriginal;
 				}
-				if (z�hlerNeedle == l�ngeNeedle-1){
+				if (zaehlerNeedle == laengeNeedle-1){
 					return stelleImString;
 				}
-				z�hlerOriginal++;
-				z�hlerNeedle++;
+				zaehlerOriginal++;
+				zaehlerNeedle++;
 				needleReset = false;
 			}
 			if (needleReset != false){
-				z�hlerOriginal++;
+				zaehlerOriginal++;
 			}
-			z�hlerNeedle = 0;
+			zaehlerNeedle = 0;
 			needleReset = true;
 		}
 		return -1;

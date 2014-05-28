@@ -5,7 +5,7 @@ package uebung06;
 /**
  * 
  		
- * Diese Java-Klasse zum Testen enth�aelt 10 zu erkennende Programmzeilen
+ * Diese Java-Klasse zum Testen enthaelt 10 zu erkennende Programmzeilen
    
  *
  */
