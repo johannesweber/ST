@@ -1,10 +1,10 @@
 /* Packages
  */
-
+package ST;
 /**
  *
 
- * Diese Java-Klasse zum Testen enth‰lt 10 zu erkennende Programmzeilen
+ * Diese Java-Klasse zum Testen enthaelt 10 zu erkennende Programmzeilen
 
  *
  */
