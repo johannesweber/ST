@@ -22,16 +22,15 @@ public class LinesOfCodeRefactored {
         //moegliche Fehlerquellen abfangen
         if (filename == null){
             linesOfCodeCounter = -1;
-        }
+        }else{
+            if (!new File(filename).exists()){
+                linesOfCodeCounter = -1;
+            }
 
-        if (!new File(filename).exists()){
-            linesOfCodeCounter = -1;
+            if (!new File(filename).canRead()){
+                linesOfCodeCounter = -1;
+            }
         }
-
-        if (!new File(filename).canRead()){
-            linesOfCodeCounter = -1;
-        }
-
         if(linesOfCodeCounter == -1){
             return linesOfCodeCounter;
         }
@@ -39,28 +38,38 @@ public class LinesOfCodeRefactored {
 		/*
 		 * ab hier wird die Datei analysiert
 		 */
-         try {
+        try {
             BufferedReader file = new BufferedReader(new FileReader(filename));
 
             String oneLine;
             String oneCodeLineWithoutSpaces;
-            boolean realCodeLine;
+            boolean multiLineComment = false;
+            int comment1, comment2, comment3;
 
             while (file.ready()) {
                 oneLine = file.readLine();
                 oneCodeLineWithoutSpaces = deleteSpaces(oneLine);
+                if (!oneCodeLineWithoutSpaces.equals("")){
+                    comment1 = analyzeString(oneCodeLineWithoutSpaces, "//");
+                    comment2 = analyzeString(oneCodeLineWithoutSpaces, "/*");
+                    comment3 = analyzeString(oneCodeLineWithoutSpaces, "*/");
+                    if(comment2 == 1){
+                        multiLineComment = true;
+                    }
+                    if(comment3 == 1){
+                        multiLineComment = false;
+                    }
 
-                realCodeLine = analyzeString(oneCodeLineWithoutSpaces);
-
-                if(realCodeLine){
-                    linesOfCodeCounter++;
+                    if (comment1 != 1 && comment2 != 1 && comment3 != 1 && !multiLineComment) {
+                        linesOfCodeCounter++;
+                    }
                 }
             }
             file.close();
 
-         }catch (IOException e) {
+        }catch (IOException e) {
             linesOfCodeCounter = -1;
-         }
+        }
         return linesOfCodeCounter;
     }
 
@@ -76,16 +85,17 @@ public class LinesOfCodeRefactored {
         return refactoredOriginal;
     }
 
-    static boolean analyzeString(String original){
-        boolean isRealCode = true;
+    static int analyzeString(String original, String search){
+        int realCode = -1;
+        int lengthOrignal = original.length();
+        int lengthSearch = search.length();
 
-        if(original.length() != 0){
-            if(original.charAt(0) == '/' || original.charAt(0) == '*'){
-                isRealCode = false;
+        if (lengthOrignal >= lengthSearch){
+            if(original.charAt(0) == search.charAt(0) && original.charAt(1) == search.charAt(1)){
+                realCode = 1;
             }
-        }else{
-            isRealCode = false;
         }
-        return isRealCode;
+
+        return realCode;
     }
 }

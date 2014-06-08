@@ -1,5 +1,7 @@
+/* Packages
  */
-package ST;
+package uebung06;
+
 /**
  *
 
