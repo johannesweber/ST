@@ -7,7 +7,7 @@ import java.io.IOException;
 import org.junit.Test;
 
 import original.LinesOfCode;
-//import refactored.LinesOfCodeRefactored;
+import refactored.LinesOfCodeRefactored;
 
 public class LinesOfCodeTest {
 
@@ -18,11 +18,10 @@ public class LinesOfCodeTest {
         assertEquals(10, LinesOfCode.countLines(TEST_FILE_NAME));
     }
 
-    /**
+
     @Test
     public void testRefactoredVersion() throws IOException {
-        assertEquals(10, LinesOfCodeRefactored.countLines(TEST_FILE_NAME));
+        assertEquals(10, LinesOfCodeRefactored.countRealCodeLines(TEST_FILE_NAME));
     }
-    **/
 }
 

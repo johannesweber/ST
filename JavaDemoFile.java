@@ -1,4 +1,3 @@
-/* Packages
  */
 package ST;
 /**
