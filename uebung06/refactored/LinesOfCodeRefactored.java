@@ -19,8 +19,10 @@ public class LinesOfCodeRefactored {
 
         int linesOfCodeCounter = 0;
 
-        if (filename == null)
-            linesOfCodeCounter =  -1;
+        //moegliche Fehlerquellen abfangen
+        if (filename == null){
+            linesOfCodeCounter = -1;
+        }
 
         if (!new File(filename).exists()){
             linesOfCodeCounter = -1;
@@ -30,18 +32,22 @@ public class LinesOfCodeRefactored {
             linesOfCodeCounter = -1;
         }
 
+        if(linesOfCodeCounter == -1){
+            return linesOfCodeCounter;
+        }
+
 		/*
 		 * ab hier wird die Datei analysiert
 		 */
          try {
-            BufferedReader javaDatei = new BufferedReader(new FileReader(filename));
+            BufferedReader file = new BufferedReader(new FileReader(filename));
 
             String oneLine;
             String oneCodeLineWithoutSpaces;
             boolean realCodeLine;
 
-            while (javaDatei.ready()) {
-                oneLine = javaDatei.readLine();
+            while (file.ready()) {
+                oneLine = file.readLine();
                 oneCodeLineWithoutSpaces = deleteSpaces(oneLine);
 
                 realCodeLine = analyzeString(oneCodeLineWithoutSpaces);
@@ -50,7 +56,7 @@ public class LinesOfCodeRefactored {
                     linesOfCodeCounter++;
                 }
             }
-            javaDatei.close();
+            file.close();
 
          }catch (IOException e) {
             linesOfCodeCounter = -1;
@@ -60,10 +66,13 @@ public class LinesOfCodeRefactored {
 
     //Wenn vorhanden, loesche die Leerzeichen und Tabs
     static String deleteSpaces(String original) {
+
         String refactoredOriginal;
         String refactoredOriginalCache;
+
         refactoredOriginalCache = original.replace("\t", "");
         refactoredOriginal = refactoredOriginalCache.replace(" ", "");
+
         return refactoredOriginal;
     }
 
@@ -71,17 +80,12 @@ public class LinesOfCodeRefactored {
         boolean isRealCode = true;
 
         if(original.length() != 0){
-            if(original.charAt(0) == '/'){
-                isRealCode = false;
-            }
-
-            if(original.charAt(0) == '*'){
+            if(original.charAt(0) == '/' || original.charAt(0) == '*'){
                 isRealCode = false;
             }
         }else{
             isRealCode = false;
         }
-
         return isRealCode;
     }
 }
