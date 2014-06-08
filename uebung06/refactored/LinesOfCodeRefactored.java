@@ -12,27 +12,27 @@ public class LinesOfCodeRefactored {
      * Java-Datei.
      * @param filename die Datei, welche ueberpreft werden soll.
      * @return die Anzahl echter Programmzeilen in der uebergebenen Datei.
-     * Wenn ein Fehler auftritt, oder es keine "echten Programmzeilen" gitb, gibt
-     * sie -1 zurueck.
+     * Wenn ein Fehler auftritt, oder es keine "echten Programmzeilen" gibt, wird
+     * -1 zurueck gegeben.
      */
     public static int countRealCodeLines(String filename){
 
-        int linesOfCodeCounter = 0;
+        int RealCodeLinesCounter = 0;
 
         //moegliche Fehlerquellen abfangen
         if (filename == null){
-            linesOfCodeCounter = -1;
+            RealCodeLinesCounter = -1;
         }else{
             if (!new File(filename).exists()){
-                linesOfCodeCounter = -1;
+                RealCodeLinesCounter = -1;
             }
 
             if (!new File(filename).canRead()){
-                linesOfCodeCounter = -1;
+                RealCodeLinesCounter = -1;
             }
         }
-        if(linesOfCodeCounter == -1){
-            return linesOfCodeCounter;
+        if(RealCodeLinesCounter == -1){
+            return RealCodeLinesCounter;
         }
 
 		/*
@@ -42,17 +42,17 @@ public class LinesOfCodeRefactored {
             BufferedReader file = new BufferedReader(new FileReader(filename));
 
             String oneLine;
-            String oneCodeLineWithoutSpaces;
+            String oneLineWithoutSpaces;
             boolean multiLineComment = false;
             int comment1, comment2, comment3;
 
             while (file.ready()) {
                 oneLine = file.readLine();
-                oneCodeLineWithoutSpaces = deleteSpaces(oneLine);
-                if (!oneCodeLineWithoutSpaces.equals("")){
-                    comment1 = analyzeString(oneCodeLineWithoutSpaces, "//");
-                    comment2 = analyzeString(oneCodeLineWithoutSpaces, "/*");
-                    comment3 = analyzeString(oneCodeLineWithoutSpaces, "*/");
+                oneLineWithoutSpaces = deleteSpaces(oneLine);
+                if (!oneLineWithoutSpaces.equals("")){
+                    comment1 = analyzeString(oneLineWithoutSpaces, "//");
+                    comment2 = analyzeString(oneLineWithoutSpaces, "/*");
+                    comment3 = analyzeString(oneLineWithoutSpaces, "*/");
                     if(comment2 == 1){
                         multiLineComment = true;
                     }
@@ -61,16 +61,16 @@ public class LinesOfCodeRefactored {
                     }
 
                     if (comment1 != 1 && comment2 != 1 && comment3 != 1 && !multiLineComment) {
-                        linesOfCodeCounter++;
+                        RealCodeLinesCounter++;
                     }
                 }
             }
             file.close();
 
         }catch (IOException e) {
-            linesOfCodeCounter = -1;
+            RealCodeLinesCounter = -1;
         }
-        return linesOfCodeCounter;
+        return RealCodeLinesCounter;
     }
 
     //Wenn vorhanden, loesche die Leerzeichen und Tabs
