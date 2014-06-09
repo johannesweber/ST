@@ -18,33 +18,15 @@ public class LinesOfCodeRefactored {
     public static int countRealCodeLines(String filename){
 
         int RealCodeLinesCounter = 0;
+        String oneLine;
+        String oneLineWithoutSpaces;
+        boolean multiLineComment = false;
+        int comment1, comment2, comment3;
 
-        //moegliche Fehlerquellen abfangen
-        if (filename == null){
-            RealCodeLinesCounter = -1;
-        }else{
-            if (!new File(filename).exists()){
-                RealCodeLinesCounter = -1;
-            }
-
-            if (!new File(filename).canRead()){
-                RealCodeLinesCounter = -1;
-            }
-        }
-        if(RealCodeLinesCounter == -1){
-            return RealCodeLinesCounter;
-        }
-
-		/*
-		 * ab hier wird die Datei analysiert
-		 */
         try {
+            new File(filename).exists();
+            new File(filename).canRead();
             BufferedReader file = new BufferedReader(new FileReader(filename));
-
-            String oneLine;
-            String oneLineWithoutSpaces;
-            boolean multiLineComment = false;
-            int comment1, comment2, comment3;
 
             while (file.ready()) {
                 oneLine = file.readLine();
