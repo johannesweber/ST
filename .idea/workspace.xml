@@ -67,7 +67,7 @@
       <file leaf-file-name="LinesOfCodeRefactored.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/uebung06/refactored/LinesOfCodeRefactored.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="0" selection-start="129" selection-end="129" vertical-scroll-proportion="0.16055046" vertical-offset="0" max-vertical-offset="1320">
+            <state line="35" column="82" selection-start="1173" selection-end="1173" vertical-scroll-proportion="0.38372093" vertical-offset="360" max-vertical-offset="1515">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -131,7 +131,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -220,6 +219,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -562,11 +562,13 @@
       <workItem from="1402248749551" duration="849000" />
       <workItem from="1402252417238" duration="11490000" />
       <workItem from="1402298094701" duration="263000" />
+      <workItem from="1402318257995" duration="1925000" />
+      <workItem from="1402660470796" duration="2095000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30294000" />
+    <option name="totallyTimeSpent" value="34314000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1280" height="774" extended-state="6" />
@@ -617,6 +619,15 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/uebung06/refactored/LinesOfCodeRefactored.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="0" selection-start="129" selection-end="129" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="1320">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/uebung06/refactored/LinesOfCodeRefactored.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1590">
@@ -694,20 +705,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/uebung06/original/LinesOfCode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="89" column="0" selection-start="2771" selection-end="2862" vertical-scroll-proportion="0.71153843" vertical-offset="1039" max-vertical-offset="1830">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/uebung06/test/LinesOfCodeTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="491" selection-end="491" vertical-scroll-proportion="0.6511628" vertical-offset="65" max-vertical-offset="495">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
+        <state line="89" column="0" selection-start="2771" selection-end="2862" vertical-scroll-proportion="0.71153843" vertical-offset="1039" max-vertical-offset="1830" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/JavaDemoFile.java">
@@ -715,9 +713,18 @@
         <state line="1" column="3" selection-start="15" selection-end="15" vertical-scroll-proportion="-0.27972028" vertical-offset="135" max-vertical-offset="570" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/uebung06/test/LinesOfCodeTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="46" selection-start="537" selection-end="537" vertical-scroll-proportion="0.5275229" vertical-offset="0" max-vertical-offset="654">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/uebung06/refactored/LinesOfCodeRefactored.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="129" selection-end="129" vertical-scroll-proportion="0.16055046" vertical-offset="0" max-vertical-offset="1320">
+        <state line="35" column="82" selection-start="1173" selection-end="1173" vertical-scroll-proportion="0.38372093" vertical-offset="360" max-vertical-offset="1515">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

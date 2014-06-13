@@ -7,21 +7,21 @@ import java.io.IOException;
 
 
 public class LinesOfCodeRefactored {
+
+    static final int NOTFOUND = -1;
+    static final int FOUND = 1;
+
     /**
-     * Die Methode liefert die Anzahl "echter Programmzeilen" in einer
-     * Java-Datei.
-     * @param filename die Datei, welche ueberpreft werden soll.
-     * @return die Anzahl echter Programmzeilen in der uebergebenen Datei.
-     * Wenn ein Fehler auftritt, oder es keine "echten Programmzeilen" gibt, wird
-     * -1 zurueck gegeben.
+     * @param filename the file in which we want to count the lines
+     * @return the number of real code lines within the given file
      */
     public static int countRealCodeLines(String filename){
 
-        int RealCodeLinesCounter = 0;
+        int realCodeLinesCounter = 0;
         String oneLine;
         String oneLineWithoutSpaces;
         boolean multiLineComment = false;
-        int comment1, comment2, comment3;
+        int comment, blockCommentStart, blockCommentEnd;
 
         try {
             new File(filename).exists();
@@ -32,30 +32,37 @@ public class LinesOfCodeRefactored {
                 oneLine = file.readLine();
                 oneLineWithoutSpaces = deleteSpaces(oneLine);
                 if (!oneLineWithoutSpaces.equals("")){
-                    comment1 = analyzeString(oneLineWithoutSpaces, "//");
-                    comment2 = analyzeString(oneLineWithoutSpaces, "/*");
-                    comment3 = analyzeString(oneLineWithoutSpaces, "*/");
-                    if(comment2 == 1){
+                    comment = searchString(oneLineWithoutSpaces, "//");
+                    blockCommentStart = searchString(oneLineWithoutSpaces, "/*");
+                    blockCommentEnd = searchString(oneLineWithoutSpaces, "*/");
+                    if(blockCommentStart == FOUND){
                         multiLineComment = true;
                     }
-                    if(comment3 == 1){
+                    if(blockCommentEnd == FOUND){
                         multiLineComment = false;
                     }
 
-                    if (comment1 != 1 && comment2 != 1 && comment3 != 1 && !multiLineComment) {
-                        RealCodeLinesCounter++;
+                    if (comment == NOTFOUND &&
+                        blockCommentStart == NOTFOUND &&
+                        blockCommentEnd == NOTFOUND &&
+                        !multiLineComment) {
+                        realCodeLinesCounter++;
                     }
                 }
             }
             file.close();
 
         }catch (IOException e) {
-            RealCodeLinesCounter = -1;
+            realCodeLinesCounter = NOTFOUND;
         }
-        return RealCodeLinesCounter;
+        return realCodeLinesCounter;
     }
 
-    //Wenn vorhanden, loesche die Leerzeichen und Tabs
+    /**
+     *
+     * @param original the string from which we remove the spaces
+     * @return the new string without any spaces
+     */
     static String deleteSpaces(String original) {
 
         String refactoredOriginal;
@@ -67,17 +74,23 @@ public class LinesOfCodeRefactored {
         return refactoredOriginal;
     }
 
-    static int analyzeString(String original, String search){
-        int realCode = -1;
+    /**
+     *
+     * @param original the string in which we are searching for
+     * @param search   the string we are lookig for
+     * @return if "search" was found or not
+     */
+    static int searchString(String original, String search){
+        int realCode = NOTFOUND;
         int lengthOrignal = original.length();
         int lengthSearch = search.length();
 
+        // Query to prevend a StringIndexOutOfBounds Exception
         if (lengthOrignal >= lengthSearch){
             if(original.charAt(0) == search.charAt(0) && original.charAt(1) == search.charAt(1)){
-                realCode = 1;
+                realCode = FOUND;
             }
         }
-
         return realCode;
     }
 }
